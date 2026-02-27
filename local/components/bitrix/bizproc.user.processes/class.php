@@ -471,16 +471,16 @@ class BizprocUserProcesses
 
 		$this->setFilterToRequest($workflowsRequest);
 
-		$this->logger = new FileHandlerLog();
-		$this->logger->record("fetchWorkflows workflowsRequest", [
-			'raw_object' => $workflowsRequest
-		]);
+		// $this->logger = new FileHandlerLog();
+		// $this->logger->record("fetchWorkflows workflowsRequest", [
+		// 	'raw_object' => $workflowsRequest
+		// ]);
 
-		$getWorkFlowData = $workflowStateService->getList($workflowsRequest);
+		// $getWorkFlowData = $workflowStateService->getList($workflowsRequest);
 
-		$this->logger->record("fetchWorkflows getWorkFlowData", [
-			'raw_object' => $ormFilter
-		]);
+		// $this->logger->record("fetchWorkflows getWorkFlowData", [
+		// 	'raw_object' => $ormFilter
+		// ]);
 
 
 		return $workflowStateService->getList($workflowsRequest);
@@ -492,10 +492,10 @@ class BizprocUserProcesses
 		$workflowsRequest->setFilterUserId($this->getTargetUserId());
 		$userFilter = $this->filterOptions->getFilter($this->getFilterFields());
 
-		$this->logger = new FileHandlerLog();
-		$this->logger->record("setFilterToRequest userFilter", [
-			'raw_object' => $userFilter
-		]);
+		// $this->logger = new FileHandlerLog();
+		// $this->logger->record("setFilterToRequest userFilter", [
+		// 	'raw_object' => $userFilter
+		// ]);
 		
 		if (empty($userFilter) && $this->filterOptions->getCurrentFilterId() === 'default_filter')
 		{
@@ -528,9 +528,9 @@ class BizprocUserProcesses
 
 		
 
-		$this->logger->record("setFilterToRequest additionalFilter", [
-			'raw_object' => $additionalFilter
-		]);
+		// $this->logger->record("setFilterToRequest additionalFilter", [
+		// 	'raw_object' => $additionalFilter
+		// ]);
 
 	}
 
