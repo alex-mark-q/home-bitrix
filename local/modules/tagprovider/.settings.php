@@ -13,7 +13,6 @@ return [
                     'entityId' => 'strcompany', // Уникальный ID вашей сущности
                     'provider' => [
                         'moduleId' => 'tagprovider', // ID вашего модуля (папка модуля)
-                        // 'className' => EntitySelector\StructureCompanyProvider::class
                         'className' => '\\Bitrix\\TagProvider\\Integration\\UI\\EntitySelector\\StructureCompanyProvider'
                     ],
                 ],
