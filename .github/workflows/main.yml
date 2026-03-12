@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ] # или ваша рабочая ветка
+
+jobs:
+  first:
+    runs-on: ubuntu-latest # или ваш self-hosted раннер
+    steps:
+      - name: Run first step
+        run: echo "first"
+
+  second:
+    runs-on: self-hosted # для rsync на локальный сервер лучше использовать свой раннер
+    needs: first
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run second step
+        run: |
+          echo "second"
+          echo "${{ github.workspace }}"
+
+      - name: Deploy and Migrate (after_script analog)
+        if: always() # выполнится даже если предыдущие шаги в этой job упали
+        run: |
+          rsync -r "${{ github.workspace }}/" /home/bitrix/www/
+          cd /home/bitrix/www/
+          php bitrix/modules/sprint.migration/tools/migrate.php down
+
+  third:
+    runs-on: ubuntu-latest
+    needs: second
+    steps:
+      - name: Run third step
+        run: echo "third"
